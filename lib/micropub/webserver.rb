@@ -10,7 +10,7 @@ module Micropub
 
     github = Github.new
 
-    endpoints = Indieauth::Endpoints.new(ENV["SITE_URL"])
+    endpoints = Indieauth::Endpoints.new(ENV.fetch("SITE_URL"))
     token = Indieauth::Token.new(endpoints.token_endpoint)
 
     get '/' do
@@ -24,7 +24,7 @@ module Micropub
     end
 
     post "/micropub/main" do
-      if token.validate(ENV["INDIEAUTH_TOKEN"])
+      if token.validate(ENV.fetch("INDIEAUTH_TOKEN"))
         post = Post.new(params)
 
         if github.post!(post)

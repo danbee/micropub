@@ -24,7 +24,7 @@ module Micropub
         path: path,
         message: "Posting a post",
         content: post.post_content,
-        branch: "api_test",
+        branch: ENV.fetch("GITHUB_BRANCH", "master"),
       )
     end
 
