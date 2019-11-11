@@ -17,13 +17,13 @@ module Micropub
       "Hello, World!"
     end
 
-    get "/micropub" do
+    get "/micropub/main" do
       json data: {
         posts: github.posts
       }
     end
 
-    post "/micropub" do
+    post "/micropub/main" do
       if token.validate(ENV["INDIEAUTH_TOKEN"])
         post = Post.new(params)
 
