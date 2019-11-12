@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-gem 'dotenv'
+ruby "2.6.5"
+
+gem "dotenv"
 
 gem "sinatra"
 gem "sinatra-contrib"
