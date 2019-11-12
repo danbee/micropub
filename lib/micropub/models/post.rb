@@ -34,7 +34,7 @@ class Post
   end
 
   def categories
-    params["category"]
+    params["category"] || []
   end
 
   def content
