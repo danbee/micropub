@@ -26,7 +26,11 @@ class Post
   end
 
   def published
-    @_published ||= Date.parse(params["published"])
+    if params["published"]
+      DateTime.parse(params["published"])
+    else
+      DateTime.now
+    end
   end
 
   def categories
