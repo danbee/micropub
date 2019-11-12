@@ -22,7 +22,7 @@ module Micropub
         "danbarber.me.hugo",
         path,
         path: path,
-        message: "Posting a post",
+        message: "Posting: #{post.truncated_content}",
         content: post.post_content,
         branch: ENV.fetch("GITHUB_BRANCH", "master"),
       )
