@@ -28,7 +28,8 @@ module Micropub
         post = Post.new(params)
 
         if github.post!(post)
-          status 201
+          headers "Location" => post.path
+          status 202
         else
           status 400
         end

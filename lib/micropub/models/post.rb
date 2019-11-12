@@ -5,6 +5,10 @@ class Post
     @params = params
   end
 
+  def path
+    "/blog/#{published.strftime("%Y/%m/%d")}/#{id}"
+  end
+
   def id
     title.
       downcase.
@@ -22,7 +26,7 @@ class Post
       split(" ").
       take(6).
       join(" ").
-      gsub(/([a-z])$/, "\1…")
+      gsub(/([a-z])$/, "\\1…")
   end
 
   def published
