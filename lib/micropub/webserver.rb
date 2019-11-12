@@ -28,7 +28,7 @@ module Micropub
         post = Post.new(params)
 
         if github.post!(post)
-          headers "Location" => post.path
+          headers "Location" => "#{ENV.fetch("SITE_URL")}#{post.path}"
           status 202
         else
           status 400
