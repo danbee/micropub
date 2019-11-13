@@ -10,11 +10,13 @@ module Micropub
 
     github = Github.new
 
-    endpoints = Indieauth::Endpoints.new(ENV.fetch("SITE_URL"))
-    token = Indieauth::Token.new(endpoints.token_endpoint)
-
     get '/' do
       "Hello, World!"
+    end
+
+    get '/view-headers' do
+      content_type :text
+      json request.env
     end
 
     get "/micropub/main" do
@@ -24,7 +26,7 @@ module Micropub
     end
 
     post "/micropub/main" do
-      if token.validate(ENV.fetch("INDIEAUTH_TOKEN"))
+      if valid_token?
         post = Post.new(params)
 
         if github.post!(post)
@@ -36,6 +38,18 @@ module Micropub
       else
         status 401
       end
+    end
+
+    def valid_token?
+      token = Indieauth::Token.new(endpoints.token_endpoint)
+
+      auth_type, auth_token = request.env["HTTP_AUTHORIZATION"]&.split(" ")
+
+      auth_type == "Bearer" && token.validate(auth_token)
+    end
+
+    def endpoints
+      @_endpoints ||= Indieauth::Endpoints.new(ENV.fetch("SITE_URL"))
     end
   end
 end
