@@ -38,7 +38,11 @@ class Post
   end
 
   def categories
-    params["category"] || []
+    if params["category"].is_a?(Array)
+      params["category"] || []
+    else
+      [params["category"]].compact
+    end
   end
 
   def content
