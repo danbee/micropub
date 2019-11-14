@@ -1,12 +1,10 @@
+require "date"
+
 class Post
   attr_accessor :params
 
-  def initialize(params)
+  def initialize(params = {})
     @params = params
-  end
-
-  def path
-    "/blog/#{published.strftime("%Y/%m/%d")}/#{id}"
   end
 
   def id
@@ -19,6 +17,10 @@ class Post
 
   def title
     params["title"] || truncated_content
+  end
+
+  def path
+    "/blog/#{published.strftime("%Y/%m/%d")}/#{id}"
   end
 
   def truncated_content

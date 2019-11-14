@@ -13,3 +13,5 @@ gem "faraday"
 gem "github_api"
 
 gem "indieweb-endpoints"
+
+gem "minitest"
