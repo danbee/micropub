@@ -1,5 +1,6 @@
-require "minitest/autorun"
-require_relative "../../../../lib/micropub/models/post"
+require "test_helper"
+
+require "micropub/models/post"
 
 describe Post do
   describe "#id" do

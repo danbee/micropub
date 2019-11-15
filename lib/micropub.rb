@@ -1,3 +1,5 @@
+require "micropub/version"
+
 module Micropub
   autoload :Webserver, File.expand_path('micropub/webserver.rb', __dir__)
   autoload :Github, File.expand_path('micropub/github.rb', __dir__)
