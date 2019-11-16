@@ -9,7 +9,7 @@ describe "create post" do
   end
 
   it "creates a simple post" do
-    post '/micropub/main', {
+    post "/micropub/main", {
       content: "Hello, World!"
     }
 
@@ -20,12 +20,12 @@ describe "create post" do
   end
 
   it "creates a post with a title" do
-    post '/micropub/main', {
+    post "/micropub/main", {
       title: "My money's in that office, right?",
       content: <<~CONTENT,
-        If she start giving me some bullshit about it ain't there, and we got
-        to go someplace else and get it, I'm gonna shoot you in the head then
-        and there. Then I'm gonna shoot that bitch in the kneecaps, find out
+        If she start giving me some bullshit about it ain"t there, and we got
+        to go someplace else and get it, I"m gonna shoot you in the head then
+        and there. Then I"m gonna shoot that bitch in the kneecaps, find out
         where my goddamn money is.
       CONTENT
     }
@@ -37,7 +37,7 @@ describe "create post" do
   end
 
   it "creates a post with a single category" do
-    post '/micropub/main', {
+    post "/micropub/main", {
       content: "Hello, World!",
       category: "my-blog",
     }
@@ -49,7 +49,7 @@ describe "create post" do
   end
 
   it "creates a post with multiple categories" do
-    post '/micropub/main', {
+    post "/micropub/main", {
       content: "Hello, World!",
       category: ["one", "two", "three"],
     }
@@ -58,5 +58,8 @@ describe "create post" do
     assert last_response.accepted?
     assert_equal last_response.headers["Location"],
       "https://test.danbarber.me/blog/#{date}/hello-world"
+  end
+
+  it "creates a post with JSON" do
   end
 end
