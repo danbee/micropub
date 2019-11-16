@@ -61,5 +61,16 @@ describe "create post" do
   end
 
   it "creates a post with JSON" do
+    post_json = {
+      content: "Hello, World!",
+      category: ["one", "two", "three"],
+    }.to_json
+
+    post "/micropub/main", post_json, { "CONTENT_TYPE" => "application/json" }
+
+    date = Time.now.strftime("%Y/%m/%d")
+    assert last_response.accepted?
+    assert_equal last_response.headers["Location"],
+      "https://test.danbarber.me/blog/#{date}/hello-world"
   end
 end

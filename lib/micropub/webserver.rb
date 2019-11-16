@@ -26,7 +26,7 @@ module Micropub
 
     post "/micropub/main" do
       if valid_token?
-        post = Post.new(params)
+        post = Post.new(post_params)
 
         if github.post!(post)
           headers "Location" => "#{ENV.fetch("SITE_URL")}#{post.path}"
@@ -36,6 +36,15 @@ module Micropub
         end
       else
         status 401
+      end
+    end
+
+    def post_params
+      if request.env["CONTENT_TYPE"] == "application/json"
+        request.body.rewind
+        JSON.parse(request.body.read)
+      else
+        params
       end
     end
 
