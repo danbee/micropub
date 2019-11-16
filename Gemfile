@@ -14,8 +14,10 @@ gem "github_api"
 
 gem "indieweb-endpoints"
 
-gem "pry"
-gem "minitest"
-gem "minitest-hooks"
-gem "mocha"
-gem "rack-test"
+group :test do
+  gem "pry"
+  gem "minitest"
+  gem "minitest-hooks"
+  gem "mocha"
+  gem "rack-test"
+end
