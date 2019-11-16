@@ -1,6 +1,6 @@
 require "test_helper"
 
-class HelloWorldTest < MiniTest::Unit::TestCase
+class HelloWorldTest < MiniTest::Test
   include Rack::Test::Methods
 
   def app
