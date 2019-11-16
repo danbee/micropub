@@ -1,4 +1,6 @@
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require 'dotenv'
+Dotenv.load(".env.test")
+
 require "micropub"
 
 require "rack/test"

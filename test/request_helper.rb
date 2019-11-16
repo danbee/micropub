@@ -7,5 +7,3 @@ MiniTest::Spec.register_spec_type(/something/, Minitest::HooksSpec)
 def app
   Micropub::Webserver
 end
-
-ENV["SITE_URL"] = "https://test.danbarber.me"
