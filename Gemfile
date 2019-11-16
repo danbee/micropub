@@ -4,20 +4,18 @@ ruby "2.6.5"
 
 gem "dotenv"
 
+gem "faraday"
+gem "github_api"
+gem "indieweb-endpoints"
+gem "kramdown"
+gem "puma"
 gem "sinatra"
 gem "sinatra-contrib"
-gem "puma"
-
-gem "faraday"
-
-gem "github_api"
-
-gem "indieweb-endpoints"
 
 group :test do
-  gem "pry"
   gem "minitest"
   gem "minitest-hooks"
   gem "mocha"
+  gem "pry"
   gem "rack-test"
 end

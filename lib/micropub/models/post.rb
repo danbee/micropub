@@ -1,4 +1,5 @@
 require "date"
+require "kramdown"
 
 class Post
   attr_accessor :params
@@ -48,7 +49,21 @@ class Post
   end
 
   def content
-    params["content"]
+    if params["content"].is_a?(Hash)
+      content_from_hash
+    else
+      params["content"]
+    end
+  end
+
+  def content_from_hash
+    if params["content"]["text"]
+      params["content"]["text"]
+    elsif params["content"]["html"]
+      Kramdown::Document.
+        new(params["content"]["html"], html_to_native: true).
+        to_kramdown
+    end
   end
 
   def post_content

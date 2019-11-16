@@ -73,4 +73,18 @@ describe "create post" do
     assert_equal last_response.headers["Location"],
       "https://test.danbarber.me/blog/#{date}/hello-world"
   end
+
+  it "creates a post with JSON and HTML content" do
+    post_json = {
+      content: { html: "<p>Hello, World!</p>" },
+      category: ["one", "two", "three"],
+    }.to_json
+
+    post "/micropub/main", post_json, { "CONTENT_TYPE" => "application/json" }
+
+    date = Time.now.strftime("%Y/%m/%d")
+    assert last_response.accepted?
+    assert_equal last_response.headers["Location"],
+      "https://test.danbarber.me/blog/#{date}/hello-world"
+  end
 end

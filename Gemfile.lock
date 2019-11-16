@@ -42,6 +42,7 @@ GEM
       link-header-parser (~> 0.2.0)
       nokogiri (~> 1.10)
     jwt (2.2.1)
+    kramdown (2.1.0)
     link-header-parser (0.2.0)
       absolutely (~> 3.0)
     metaclass (0.0.4)
@@ -103,6 +104,7 @@ DEPENDENCIES
   faraday
   github_api
   indieweb-endpoints
+  kramdown
   minitest
   minitest-hooks
   mocha

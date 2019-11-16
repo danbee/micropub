@@ -130,6 +130,18 @@ describe Post do
 
       _(post.content).must_equal "Hello, World!"
     end
+
+    it "accepts content in an object" do
+      post = Post.new("content" => { "text" => "Hello, World!" })
+
+      _(post.content).must_equal "Hello, World!"
+    end
+
+    it "converts HTML content to Markdown" do
+      post = Post.new("content" => { "html" => "<p>Hello, World!</p>" })
+
+      _(post.content.strip).must_equal "Hello, World!"
+    end
   end
 
   describe "#post_content" do
