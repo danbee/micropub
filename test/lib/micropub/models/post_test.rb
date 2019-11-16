@@ -142,6 +142,46 @@ describe Post do
 
       _(post.content.strip).must_equal "Hello, World!"
     end
+
+    it "converts complex HTML content to Markdown" do
+      post = Post.new(
+        "content" => {
+          "html" => <<~HTML,
+            <p>This is a test post, with some lists and stuff.</p>
+
+            <blockquote>
+              Well, the way they make shows is, they make one show. That show's
+              called a pilot. Then they show that show to the people who make
+              shows, and on the strength of that one show they decide if they're
+              going to make more shows. Some pilots get picked and become
+              television programs. Some don't, become nothing. She starred in
+              one of the ones that became nothing.
+            </blockquote>
+
+            <ul>
+              <li>One</li>
+              <li>Two</li>
+              <li>Three</li>
+            </ul>
+          HTML
+        }
+      )
+
+      _(post.content.strip).must_equal <<~MARKDOWN.strip
+        This is a test post, with some lists and stuff.
+
+        > Well, the way they make shows is, they make one show. That show\\'s
+        > called a pilot. Then they show that show to the people who make shows,
+        > and on the strength of that one show they decide if they\\'re going to
+        > make more shows. Some pilots get picked and become television
+        > programs. Some don\\'t, become nothing. She starred in one of the ones
+        > that became nothing.
+
+        * One
+        * Two
+        * Three
+      MARKDOWN
+    end
   end
 
   describe "#post_content" do
