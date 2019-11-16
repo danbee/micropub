@@ -3,7 +3,6 @@ require 'sinatra/contrib'
 
 module Micropub
   class Webserver < Sinatra::Base
-    register Sinatra::ConfigFile
     register Sinatra::Namespace
 
     set server: 'puma'
