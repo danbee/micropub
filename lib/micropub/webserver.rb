@@ -41,11 +41,15 @@ module Micropub
 
     def post_params
       if request.env["CONTENT_TYPE"] == "application/json"
-        request.body.rewind
-        JSON.parse(request.body.read)
+        json_params
       else
         params
       end
+    end
+
+    def json_params
+      request.body.rewind
+      PostJSONParser.new(request.body.read).params
     end
 
     def valid_token?

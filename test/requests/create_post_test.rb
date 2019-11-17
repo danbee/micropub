@@ -62,8 +62,11 @@ describe "create post" do
 
   it "creates a post with JSON" do
     post_json = {
-      content: "Hello, World!",
-      category: ["one", "two", "three"],
+      type: "h-entry",
+      properties: {
+        content: ["Hello, World!"],
+        category: ["one", "two", "three"],
+      },
     }.to_json
 
     post "/micropub/main", post_json, { "CONTENT_TYPE" => "application/json" }
@@ -76,8 +79,11 @@ describe "create post" do
 
   it "creates a post with JSON and HTML content" do
     post_json = {
-      content: { html: "<p>Hello, World!</p>" },
-      category: ["one", "two", "three"],
+      type: "h-entry",
+      properties: {
+        content: { html: ["<p>Hello, World!</p>"] },
+        category: ["one", "two", "three"],
+      },
     }.to_json
 
     post "/micropub/main", post_json, { "CONTENT_TYPE" => "application/json" }
