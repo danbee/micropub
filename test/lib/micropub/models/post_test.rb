@@ -205,5 +205,28 @@ describe Micropub::Post do
         Hallo, Earth!
       POST
     end
+
+    it "returns a post formatted for hugo with a title" do
+      post = Micropub::Post.new(
+        "title" => "Welcome!",
+        "content" => "Hallo, Earth!",
+        "published" => "2019-11-12",
+        "category" => ["one", "two", "three"],
+      )
+
+      _(post.post_content).must_equal <<~POST
+        ---
+        title: Welcome!
+        date: '2019-11-12T00:00:00+00:00'
+        layout: micropost
+        categories:
+        - one
+        - two
+        - three
+        ---
+
+        Hallo, Earth!
+      POST
+    end
   end
 end

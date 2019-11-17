@@ -1,4 +1,5 @@
 require "date"
+require "yaml"
 require "kramdown"
 
 module Micropub
@@ -67,13 +68,18 @@ module Micropub
       end
     end
 
+    def post_frontmatter
+      {
+        "title" => title,
+        "date" => published.rfc3339,
+        "layout" => "micropost",
+        "categories" => categories,
+      }.compact.to_yaml
+    end
+
     def post_content
       <<~POST
-      ---
-      date: '#{published.rfc3339}'
-      layout: micropost
-      categories:
-      #{categories.map { |category| "- #{category}\n" }.join.strip}
+      #{post_frontmatter.strip}
       ---
 
       #{content}
