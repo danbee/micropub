@@ -6,7 +6,7 @@ module Micropub
 
     def params
       {
-        "title" => title,
+        "name" => name,
         "content" => content,
         "category" => category,
       }.compact
@@ -16,8 +16,8 @@ module Micropub
 
     attr_accessor :data
 
-    def title
-      data.dig("properties", "title", 0)
+    def name
+      data.dig("properties", "name", 0)
     end
 
     def content

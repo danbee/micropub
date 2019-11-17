@@ -5,7 +5,7 @@ require "micropub/post"
 describe Micropub::Post do
   describe "#id" do
     it "parameterizes the title" do
-      post = Micropub::Post.new("title" => "My amazing post")
+      post = Micropub::Post.new("name" => "My amazing post")
 
       _(post.id).must_equal "my-amazing-post"
     end
@@ -34,7 +34,7 @@ describe Micropub::Post do
 
   describe "#title" do
     it "returns the title" do
-      post = Micropub::Post.new("title" => "My great post")
+      post = Micropub::Post.new("name" => "My great post")
 
       _(post.title).must_equal "My great post"
     end
@@ -208,7 +208,7 @@ describe Micropub::Post do
 
     it "returns a post formatted for hugo with a title" do
       post = Micropub::Post.new(
-        "title" => "Welcome!",
+        "name" => "Welcome!",
         "content" => "Hallo, Earth!",
         "published" => "2019-11-12",
         "category" => ["one", "two", "three"],

@@ -21,7 +21,7 @@ describe "create post" do
 
   it "creates a post with a title" do
     post "/micropub/main", {
-      title: "My money's in that office, right?",
+      name: "My money's in that office, right?",
       content: <<~CONTENT,
         If she start giving me some bullshit about it ain"t there, and we got
         to go someplace else and get it, I"m gonna shoot you in the head then

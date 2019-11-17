@@ -19,7 +19,7 @@ module Micropub
     end
 
     def title
-      params["title"]
+      params["name"]
     end
 
     def path
