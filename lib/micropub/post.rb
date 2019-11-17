@@ -10,7 +10,7 @@ module Micropub
     end
 
     def id
-      title.
+      (title || truncated_content).
         downcase.
         gsub(/[^a-z]+/, " ").
         strip.
@@ -18,7 +18,7 @@ module Micropub
     end
 
     def title
-      params["title"] || truncated_content
+      params["title"]
     end
 
     def path

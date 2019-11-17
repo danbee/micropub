@@ -39,10 +39,10 @@ describe Micropub::Post do
       _(post.title).must_equal "My great post"
     end
 
-    it "returns the content if there's no title" do
+    it "returns nil if there's no title" do
       post = Micropub::Post.new("content" => "My money's in that office, right?")
 
-      _(post.title).must_equal "My money's in that office, right?"
+      assert_nil post.title
     end
   end
 
