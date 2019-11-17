@@ -1,5 +1,5 @@
 require "request_helper"
-require "micropub/indieauth"
+require "indieauth"
 require "micropub/github"
 
 describe "create post" do

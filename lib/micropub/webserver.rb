@@ -58,7 +58,7 @@ module Micropub
       auth_type, auth_token = request.env["HTTP_AUTHORIZATION"]&.split(" ")
       auth_token ||= params["access_token"]
 
-      auth_type == "Bearer" && token.validate(auth_token)
+      token.validate(auth_token)
     end
 
     def endpoints
