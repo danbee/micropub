@@ -1,8 +1,8 @@
 require "test_helper"
 
-require "micropub/models/post_json_parser"
+require "micropub/post_json_parser"
 
-describe PostJSONParser do
+describe Micropub::PostJSONParser do
   describe "#params" do
     it "parses basic attributes" do
       json = <<~JS
@@ -14,7 +14,7 @@ describe PostJSONParser do
         }
       JS
 
-      parser = PostJSONParser.new(json)
+      parser = Micropub::PostJSONParser.new(json)
 
       _(parser.params).must_equal(
         { "content" => "Hello, World!" }
@@ -33,7 +33,7 @@ describe PostJSONParser do
         }
       JS
 
-      parser = PostJSONParser.new(json)
+      parser = Micropub::PostJSONParser.new(json)
 
       _(parser.params).must_equal(
         { "content" => { "text" => "Hello, World!" } }
@@ -52,7 +52,7 @@ describe PostJSONParser do
         }
       JS
 
-      parser = PostJSONParser.new(json)
+      parser = Micropub::PostJSONParser.new(json)
 
       _(parser.params).must_equal(
         { "content" => { "html" => "<p>Hello, World!</p>" } }
@@ -69,7 +69,7 @@ describe PostJSONParser do
         }
       JS
 
-      parser = PostJSONParser.new(json)
+      parser = Micropub::PostJSONParser.new(json)
 
       _(parser.params).must_equal(
         { "category" => ["test"] }

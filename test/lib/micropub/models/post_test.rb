@@ -1,23 +1,23 @@
 require "test_helper"
 
-require "micropub/models/post"
+require "micropub/post"
 
-describe Post do
+describe Micropub::Post do
   describe "#id" do
     it "parameterizes the title" do
-      post = Post.new("title" => "My amazing post")
+      post = Micropub::Post.new("title" => "My amazing post")
 
       _(post.id).must_equal "my-amazing-post"
     end
 
     it "parameterizes the post content if there's no title" do
-      post = Post.new("content" => "Hello, World!")
+      post = Micropub::Post.new("content" => "Hello, World!")
 
       _(post.id).must_equal "hello-world"
     end
 
     it "parameterizes the truncated post content" do
-      post = Post.new(
+      post = Micropub::Post.new(
         "content" => <<~CONTENT
           Your bones don't break, mine do. That's clear. Your cells react to
           bacteria and viruses differently than mine. You don't get sick, I do.
@@ -34,13 +34,13 @@ describe Post do
 
   describe "#title" do
     it "returns the title" do
-      post = Post.new("title" => "My great post")
+      post = Micropub::Post.new("title" => "My great post")
 
       _(post.title).must_equal "My great post"
     end
 
     it "returns the content if there's no title" do
-      post = Post.new("content" => "My money's in that office, right?")
+      post = Micropub::Post.new("content" => "My money's in that office, right?")
 
       _(post.title).must_equal "My money's in that office, right?"
     end
@@ -48,7 +48,7 @@ describe Post do
 
   describe "#path" do
     it "returns the new path of the post" do
-      post = Post.new(
+      post = Micropub::Post.new(
         "published" => "2019/02/09",
         "content" => "My great post.",
       )
@@ -59,13 +59,13 @@ describe Post do
 
   describe "#truncated_content" do
     it "returns the content if it's six words or less" do
-      post = Post.new("content" => "My money's in that office, right?")
+      post = Micropub::Post.new("content" => "My money's in that office, right?")
 
       _(post.truncated_content).must_equal "My money's in that office, right?"
     end
 
     it "truncates the content to six words" do
-      post = Post.new(
+      post = Micropub::Post.new(
         "content" => <<~CONTENT
           Your bones don't break, mine do. That's clear. Your cells react to
           bacteria and viruses differently than mine. You don't get sick, I do.
@@ -80,7 +80,7 @@ describe Post do
     end
 
     it "adds an ellipsis if the content is truncated in a sentence" do
-      post = Post.new(
+      post = Micropub::Post.new(
         "content" => "The path of the righteous man is beset on all sides by "\
                      "the iniquities of the selfish and the tyranny of evil "\
                      "men.",
@@ -92,13 +92,13 @@ describe Post do
 
   describe "#published" do
     it "returns the parsed date" do
-      post = Post.new("published" => "2019-11-01")
+      post = Micropub::Post.new("published" => "2019-11-01")
 
       _(post.published).must_equal DateTime.new(2019, 11, 1)
     end
 
     it "returns todays date if no date is passed" do
-      post = Post.new
+      post = Micropub::Post.new
 
       _(post.published.to_s).must_equal DateTime.now.to_s
     end
@@ -106,19 +106,19 @@ describe Post do
 
   describe "#categories" do
     it "returns the list of categories" do
-      post = Post.new("category" => ["shows", "pilot"])
+      post = Micropub::Post.new("category" => ["shows", "pilot"])
 
       _(post.categories).must_equal ["shows", "pilot"]
     end
 
     it "returns an empty array if there are no categories" do
-      post = Post.new
+      post = Micropub::Post.new
 
       _(post.categories).must_equal []
     end
 
     it "returns an array with a single category" do
-      post = Post.new("category" => "fried-chicken")
+      post = Micropub::Post.new("category" => "fried-chicken")
 
       _(post.categories).must_equal ["fried-chicken"]
     end
@@ -126,25 +126,25 @@ describe Post do
 
   describe "#content" do
     it "returns the content" do
-      post = Post.new("content" => "Hello, World!")
+      post = Micropub::Post.new("content" => "Hello, World!")
 
       _(post.content).must_equal "Hello, World!"
     end
 
     it "accepts content in an object" do
-      post = Post.new("content" => { "text" => "Hello, World!" })
+      post = Micropub::Post.new("content" => { "text" => "Hello, World!" })
 
       _(post.content).must_equal "Hello, World!"
     end
 
     it "converts HTML content to Markdown" do
-      post = Post.new("content" => { "html" => "<p>Hello, World!</p>" })
+      post = Micropub::Post.new("content" => { "html" => "<p>Hello, World!</p>" })
 
       _(post.content.strip).must_equal "Hello, World!"
     end
 
     it "converts complex HTML content to Markdown" do
-      post = Post.new(
+      post = Micropub::Post.new(
         "content" => {
           "html" => <<~HTML,
             <p>This is a test post, with some lists and stuff.</p>
@@ -186,7 +186,7 @@ describe Post do
 
   describe "#post_content" do
     it "returns a post formatted for hugo" do
-      post = Post.new(
+      post = Micropub::Post.new(
         "content" => "Hallo, Earth!",
         "published" => "2019-11-12",
         "category" => ["one", "two", "three"],

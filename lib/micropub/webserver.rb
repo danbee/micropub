@@ -1,5 +1,6 @@
 require 'sinatra'
-require 'sinatra/contrib'
+require 'sinatra/namespace'
+require 'sinatra/json'
 
 module Micropub
   class Webserver < Sinatra::Base
@@ -55,7 +56,7 @@ module Micropub
     def valid_token?
       token = Indieauth::Token.new(endpoints.token_endpoint)
 
-      auth_type, auth_token = request.env["HTTP_AUTHORIZATION"]&.split(" ")
+      _, auth_token = request.env["HTTP_AUTHORIZATION"]&.split(" ")
       auth_token ||= params["access_token"]
 
       token.validate(auth_token)
