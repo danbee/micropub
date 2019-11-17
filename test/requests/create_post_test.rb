@@ -62,7 +62,7 @@ describe "create post" do
 
   it "creates a post with JSON" do
     post_json = {
-      type: "h-entry",
+      type: ["h-entry"],
       properties: {
         content: ["Hello, World!"],
         category: ["one", "two", "three"],
@@ -79,7 +79,7 @@ describe "create post" do
 
   it "creates a post with JSON and HTML content" do
     post_json = {
-      type: "h-entry",
+      type: ["h-entry"],
       properties: {
         content: { html: ["<p>Hello, World!</p>"] },
         category: ["one", "two", "three"],
