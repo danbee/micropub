@@ -20,16 +20,7 @@ class PostJSONParser
   end
 
   def content
-    data.dig("properties", "content", 0) || nested_content
-  end
-
-  def nested_content
-    text = data.dig("properties", "content", "text", 0)
-    html = data.dig("properties", "content", "html", 0)
-
-    return nil if text.nil? && html.nil?
-
-    { "text" => text, "html" => html }.compact
+    data.dig("properties", "content", 0)
   end
 
   def category

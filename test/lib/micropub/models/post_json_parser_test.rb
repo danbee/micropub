@@ -26,9 +26,9 @@ describe PostJSONParser do
         {
           "type": ["h-entry"],
           "properties": {
-            "content": {
-              "text": ["Hello, World!"]
-            }
+            "content": [{
+              "text": "Hello, World!"
+            }]
           }
         }
       JS
@@ -45,9 +45,9 @@ describe PostJSONParser do
         {
           "type": ["h-entry"],
           "properties": {
-            "content": {
-              "html": ["<p>Hello, World!</p>"]
-            }
+            "content": [{
+              "html": "<p>Hello, World!</p>"
+            }]
           }
         }
       JS
