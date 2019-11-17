@@ -1,5 +1,3 @@
-require "indieweb/endpoints"
-
 module Indieauth
   class Endpoints
     def initialize(site_url)
