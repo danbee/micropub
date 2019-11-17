@@ -1,6 +1,6 @@
-require 'sinatra'
-require 'sinatra/namespace'
-require 'sinatra/json'
+require "sinatra"
+require "sinatra/namespace"
+require "sinatra/json"
 
 module Micropub
   class Webserver < Sinatra::Base
