@@ -63,8 +63,10 @@ module Micropub
         params["content"]["text"]
       elsif params["content"]["html"]
         Kramdown::Document.
-          new(params["content"]["html"], html_to_native: true).
-          to_kramdown
+          new(params["content"]["html"], input: "html").
+          to_kramdown.
+          gsub("\\", "")
+          # TODO: Look into possible Kramdown bug
       end
     end
 
@@ -82,7 +84,7 @@ module Micropub
       #{post_frontmatter.strip}
       ---
 
-      #{content}
+      #{content.strip}
       POST
     end
   end
