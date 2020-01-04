@@ -58,6 +58,10 @@ module Micropub
       end
     end
 
+    def photo
+      params["photo"]
+    end
+
     def content_from_hash
       if params["content"]["text"]
         params["content"]["text"]

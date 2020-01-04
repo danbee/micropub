@@ -184,6 +184,18 @@ describe Micropub::Post do
     end
   end
 
+  describe "#photo" do
+    it "returns the url of the photo" do
+      post = Micropub::Post.new(
+        "content" => "Hallo, Earth!",
+        "photo" => "http://www.example.com/example.png",
+        "published" => "2019-11-12",
+      )
+
+      _(post.photo).must_equal "http://www.example.com/example.png"
+    end
+  end
+
   describe "#post_content" do
     it "returns a post formatted for hugo" do
       post = Micropub::Post.new(
