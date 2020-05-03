@@ -5,7 +5,7 @@ ruby "2.6.5"
 gem "dotenv"
 
 gem "faraday"
-gem "github_api"
+gem "github_api", "~> 0.18"
 gem "indieweb-endpoints"
 gem "kramdown"
 gem "puma"
