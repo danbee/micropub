@@ -42,7 +42,7 @@ GEM
       link-header-parser (~> 0.3.0)
       nokogiri (~> 1.10)
     jwt (2.2.1)
-    kramdown (2.2.1)
+    kramdown (2.3.1)
       rexml
     link-header-parser (0.3.0)
       absolutely (~> 3.1)
