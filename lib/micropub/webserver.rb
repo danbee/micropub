@@ -11,7 +11,7 @@ module Micropub
     github = Github.new
 
     get '/' do
-      "Hello, World!"
+      redirect ENV.fetch("SITE_URL")
     end
 
     get '/view-headers' do
