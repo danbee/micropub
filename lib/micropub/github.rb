@@ -2,14 +2,14 @@ require "github_api"
 
 module Micropub
   class Github
-    API_TOKEN = ENV["GITHUB_API_TOKEN"]
+    TOKEN = ENV["GITHUB_TOKEN"]
     USER = ENV["GITHUB_USER"]
     REPO = ENV["GITHUB_REPO"]
 
     CONTENT_PATH = "/content/blog"
 
     def initialize
-      @github = ::Github.new(oauth_token: API_TOKEN)
+      @github = ::Github.new(oauth_token: TOKEN)
     end
 
     def post!(post)
