@@ -24,7 +24,7 @@ module Micropub
         path: path,
         message: "Posting: #{post.truncated_content}",
         content: post.post_content,
-        branch: ENV.fetch("GITHUB_BRANCH", "master"),
+        branch: ENV.fetch("GITHUB_BRANCH", "main"),
       )
     end
 
