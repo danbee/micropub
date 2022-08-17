@@ -6,7 +6,8 @@ module Micropub
     USER = ENV["GITHUB_USER"]
     REPO = ENV["GITHUB_REPO"]
 
-    CONTENT_PATH = "/content/blog"
+    BLOG_PATH = "/content/blog"
+    PHOTOS_PATH = "/content/photos"
 
     def initialize
       @github = ::Github.new(oauth_token: TOKEN)
@@ -30,7 +31,13 @@ module Micropub
 
     def posts
       @_posts ||=
-        github.repos.contents.get(USER, REPO, CONTENT_PATH).
+        github.repos.contents.get(USER, REPO, BLOG_PATH).
+        map(&:name)
+    end
+
+    def photos
+      @_photos ||=
+        github.repos.contents.get(USER, REPO, PHOTOS_PATH).
         map(&:name)
     end
 

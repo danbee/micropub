@@ -9,7 +9,6 @@ class HelloWorldTest < MiniTest::Test
 
   def test_hello_world
     get '/'
-    assert last_response.ok?
-    assert_equal "Hello, World!", last_response.body
+    assert last_response.redirect?
   end
 end

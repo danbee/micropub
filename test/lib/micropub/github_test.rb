@@ -23,7 +23,7 @@ describe Micropub::Github do
 
             Hello, World!
           CONTENT
-          :branch => "master",
+          :branch => "main",
         }).returns(true)
       repos = mock("repos")
       repos.stubs(:contents).returns(contents)

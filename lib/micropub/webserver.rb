@@ -21,7 +21,8 @@ module Micropub
 
     get "/micropub/main" do
       json data: {
-        posts: github.posts
+        posts: github.posts,
+        photos: github.photos,
       }
     end
 

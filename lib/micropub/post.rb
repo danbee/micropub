@@ -6,6 +6,8 @@ module Micropub
   class Post
     attr_accessor :params
 
+    BASE_PATH="/blog"
+
     def initialize(params = {})
       @params = params
     end
@@ -23,7 +25,7 @@ module Micropub
     end
 
     def path
-      "/blog/#{published.strftime("%Y/%m/%d")}/#{id}"
+      "#{BASE_PATH}/#{published.strftime("%Y/%m/%d")}/#{id}"
     end
 
     def truncated_content
