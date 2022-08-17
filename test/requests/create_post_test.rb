@@ -9,7 +9,7 @@ describe "create post" do
   end
 
   it "creates a simple post" do
-    post "/micropub/main", {
+    post "/micropub", {
       content: "Hello, World!"
     }
 
@@ -20,7 +20,7 @@ describe "create post" do
   end
 
   it "creates a post with a title" do
-    post "/micropub/main", {
+    post "/micropub", {
       name: "My money's in that office, right?",
       content: <<~CONTENT,
         If she start giving me some bullshit about it ain"t there, and we got
@@ -37,7 +37,7 @@ describe "create post" do
   end
 
   it "creates a post with a single category" do
-    post "/micropub/main", {
+    post "/micropub", {
       content: "Hello, World!",
       category: "my-blog",
     }
@@ -49,7 +49,7 @@ describe "create post" do
   end
 
   it "creates a post with multiple categories" do
-    post "/micropub/main", {
+    post "/micropub", {
       content: "Hello, World!",
       category: ["one", "two", "three"],
     }
@@ -69,7 +69,7 @@ describe "create post" do
       },
     }.to_json
 
-    post "/micropub/main", post_json, { "CONTENT_TYPE" => "application/json" }
+    post "/micropub", post_json, { "CONTENT_TYPE" => "application/json" }
 
     date = Time.now.strftime("%Y/%m/%d")
     assert last_response.accepted?
@@ -86,7 +86,7 @@ describe "create post" do
       },
     }.to_json
 
-    post "/micropub/main", post_json, { "CONTENT_TYPE" => "application/json" }
+    post "/micropub", post_json, { "CONTENT_TYPE" => "application/json" }
 
     date = Time.now.strftime("%Y/%m/%d")
     assert last_response.accepted?

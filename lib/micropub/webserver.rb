@@ -19,14 +19,14 @@ module Micropub
       json request.env
     end
 
-    get "/micropub/main" do
+    get "/micropub" do
       json data: {
         posts: github.posts,
         photos: github.photos,
       }
     end
 
-    post "/micropub/main" do
+    post "/micropub" do
       if valid_token?
         post = Post.new(post_params)
 

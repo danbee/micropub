@@ -13,7 +13,7 @@ describe "auth" do
   end
 
   it "rejects authentication without a token" do
-    post "/micropub/main", {
+    post "/micropub", {
       content: "Hello, World!"
     }
 
@@ -22,7 +22,7 @@ describe "auth" do
 
   it "authenticates with a header" do
     header "Authorization", "Bearer #{@auth_token}"
-    post "/micropub/main", {
+    post "/micropub", {
       content: "Hello, World!"
     }
 
@@ -30,7 +30,7 @@ describe "auth" do
   end
 
   it "authenticates with a form param" do
-    post "/micropub/main", {
+    post "/micropub", {
       access_token: @auth_token,
       content: "Hello, World!"
     }
