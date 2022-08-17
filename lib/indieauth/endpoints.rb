@@ -1,7 +1,11 @@
 module Indieauth
   class Endpoints
     def initialize(site_url)
-      @endpoints = IndieWeb::Endpoints.get(site_url)
+      @site_url = site_url
+    end
+
+    def endpoints
+      client.endpoints
     end
 
     def method_missing(method)
@@ -10,6 +14,10 @@ module Indieauth
 
     private
 
-    attr_accessor :endpoints
+    def client
+      IndieWeb::Endpoints::Client.new(site_url)
+    end
+
+    attr_accessor :site_url
   end
 end

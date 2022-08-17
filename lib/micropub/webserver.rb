@@ -55,7 +55,7 @@ module Micropub
     end
 
     def valid_token?
-      token = Indieauth::Token.new(endpoints.token_endpoint)
+      token = Indieauth::Token.new(endpoints[:token_endpoint])
 
       _, auth_token = request.env["HTTP_AUTHORIZATION"]&.split(" ")
       auth_token ||= params["access_token"]
