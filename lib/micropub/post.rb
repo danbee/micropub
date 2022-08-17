@@ -4,9 +4,9 @@ require "kramdown"
 
 module Micropub
   class Post
-    attr_accessor :params
-
     BASE_PATH="/blog"
+
+    attr_accessor :params
 
     def initialize(params = {})
       @params = params
@@ -80,8 +80,9 @@ module Micropub
       {
         "title" => title,
         "date" => published.rfc3339,
-        "layout" => "micropost",
+        "layout" => title.nil? || title.empty? ? "micropost" : "post",
         "categories" => categories,
+        "image" => photo,
       }.compact.to_yaml
     end
 

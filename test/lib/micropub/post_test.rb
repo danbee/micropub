@@ -230,7 +230,7 @@ describe Micropub::Post do
         ---
         title: Welcome!
         date: '2019-11-12T00:00:00+00:00'
-        layout: micropost
+        layout: post
         categories:
         - one
         - two
