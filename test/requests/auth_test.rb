@@ -3,8 +3,7 @@ require "request_helper"
 describe "auth" do
   before(:each) do
     @auth_token = "123abc"
-    endpoints = mock("Indieauth::Endpoints")
-    endpoints.stubs(:token_endpoint)
+    endpoints = { token_endpoint: "" }
     Indieauth::Endpoints.stubs(:new).returns endpoints
     Indieauth::Token.any_instance.stubs(:validate).returns(false)
     Indieauth::Token.any_instance.stubs(:validate).
